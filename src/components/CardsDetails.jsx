@@ -12,12 +12,7 @@ const CardsDetails = () => {
   const history = useNavigate();
 
   const getData = useSelector((state) => state.cartReducer.carts);
-  const filterData = () => {
-    let data = getData.filter((cartItem) => {
-      return cartItem.id == id;
-    });
-    setData(data);
-  };
+
 
   const removeItem = (id) => {
     dispatch(DELETE(id));
@@ -32,6 +27,12 @@ const CardsDetails = () => {
   };
 
   useEffect(() => {
+    const filterData = () => {
+      let data = getData.filter((cartItem) => {
+        return cartItem.id === id;
+      });
+      setData(data);
+    };
     filterData();
   }, [id, getData]);
 
@@ -45,7 +46,7 @@ const CardsDetails = () => {
               return (
                 <>
                   <div className="items_img">
-                    <img src={ele.imgdata} />
+                    <img alt="dd" src={ele.imgdata} />
                   </div>
                   <div className="item-description">
                     <Table>

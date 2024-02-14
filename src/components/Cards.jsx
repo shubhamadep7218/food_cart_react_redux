@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useDispatch, useSelector } from "react-redux";
-import { ADD, ADD_TO_CART } from "../redux/actions/action";
+import { useDispatch } from "react-redux";
+import { ADD } from "../redux/actions/action";
 import Cardsdata from "./CardData";
 
 const Cards = () => {
-  const [cardData, setCardData] = useState(Cardsdata);
+  const [cardData, setCardData] = useState([]);
+
+  useEffect(()=>{
+    setCardData(Cardsdata)
+  },[cardData])
   
   const dispatch = useDispatch();
   const addItemToCart = (item) => {

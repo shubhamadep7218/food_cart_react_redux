@@ -36,7 +36,7 @@ export const cartReducer = (state=initialState, action) => {
         case DEC_FROM_CART: 
             const itemIndex_dec = state.carts.findIndex((item)=>item.id === action.payload.id);
             if(state.carts[itemIndex_dec].qnty >= 1){
-                const delteItems = state.carts[itemIndex_dec].qnty -=1;
+                // const delteItems = state.carts[itemIndex_dec].qnty -=1;
                 return {
                     ...state,
                     carts: [...state.carts]

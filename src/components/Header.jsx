@@ -4,7 +4,6 @@ import Badge from "@mui/material/Badge";
 import "./style.css";
 import { NavLink } from "react-router-dom";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE } from "../redux/actions/action";
 const Header = () => {
@@ -23,20 +22,22 @@ const Header = () => {
   const removeItem = (id) => {
     dispatch(DELETE(id));
   }
-  const total = () => {
-    let price = 0;
-    getData.map((ele) => {
-      price = price + ele.price * ele.qnty;
-    })
-    setPrice(price);
-    return price;
-  }
-  useEffect(()=>{
-    total();
-  },[total])
 
   const getData = useSelector((state)=> state.cartReducer.carts);
   
+  useEffect(()=>{
+    function total(){
+      let price = 0;
+      getData.forEach((ele) => {
+        price = price + ele.price * ele.qnty;
+      })
+      setPrice(price);
+      return price;
+    }
+    total();
+  },[price, getData])
+
+
 
 
 
@@ -95,7 +96,7 @@ const Header = () => {
                             <tr>
                               <td>
                                 <NavLink to={`/cart/${cartItem.id}`} >
-                                  <img src={cartItem.imgdata} style={{"width":"6rem", "height":"6rem", "objectFit":"cover"}} onClick={handleClose}/>
+                                  <img alt="s" src={cartItem.imgdata} style={{"width":"6rem", "height":"6rem", "objectFit":"cover"}} onClick={handleClose}/>
                                 </NavLink>
                               </td>
                               <td>
